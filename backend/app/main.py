@@ -2,6 +2,14 @@ from fastapi import FastAPI
 from sqlalchemy import text
 
 from app.database.connection import engine
+from app.database.base import Base
+
+# Import models so SQLAlchemy knows about them
+from app.models.organization import Organization
+from app.models.user import User
+from app.models.department import Department
+from app.models.document import Document
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Enterprise Knowledge Digital Twin API",
